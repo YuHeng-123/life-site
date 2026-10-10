@@ -88,9 +88,36 @@
           <div class="serendipity-actions">
             <a class="serendipity-btn primary" href="movies.html#item=spirited-away">品读 电影详情 →</a>
             <button type="button" class="serendipity-btn secondary wish-toggle"><span>🔖</span> 收入手帐</button>
+            <button type="button" class="serendipity-btn secondary postcard-trigger"><span>🖼️</span> 导出明信片</button>
             <button type="button" class="serendipity-btn random" title="随机翻阅下一张"><span class="dice-icon">🎲</span> 换一份灵感</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 🌿 今日心绪 · 灵感解药配方生成器 -->
+    <section class="section mood-recipe-section" id="mood-recipe-container" aria-label="情绪灵感配方生成器">
+      <div class="mood-recipe-wrapper">
+        <div class="mood-recipe-header">
+          <h2 class="mood-recipe-title">
+            <span>🌿 今日心绪 · 灵感解药配方</span>
+            <small style="font-size:12px;font-weight:700;color:var(--gold);border:1px solid var(--gold);padding:2px 8px;border-radius:999px;">AI 生活配方引擎</small>
+          </h2>
+          <p class="mood-recipe-subtitle">说出你今天的心情状态，瞬间配比一套四味生活解药：[一部电影 + 一处胜地 + 一道风味 + 一束芬芳]</p>
+        </div>
+        <div class="mood-input-row">
+          <input type="text" class="mood-input" placeholder="输入当前心绪，例如：今天有点疲倦想放空、心情明媚想去冒险、加班好累..." />
+          <button type="button" class="mood-submit-btn">✨ 配比解药</button>
+        </div>
+        <div class="mood-preset-tags">
+          <span style="font-size:12px;color:var(--muted);align-self:center;">快捷心绪：</span>
+          <button type="button" class="mood-tag-chip">🌿 放空治愈</button>
+          <button type="button" class="mood-tag-chip">☕ 温暖解压</button>
+          <button type="button" class="mood-tag-chip">🎒 渴望远行</button>
+          <button type="button" class="mood-tag-chip">🌙 深夜静思</button>
+          <button type="button" class="mood-tag-chip">✨ 寻找灵感</button>
+        </div>
+        <div class="mood-recipe-grid"></div>
       </div>
     </section>
 
