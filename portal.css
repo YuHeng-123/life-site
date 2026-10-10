@@ -1,0 +1,776 @@
+/* ============================================================
+   花影食途 · 视觉美学与旗舰交互增强 portal.css
+   - Zen Dark Mode (玄青深夜纸感主题)
+   - Command Palette (Cmd+K 全局即时联想搜索浮窗)
+   - Daily Serendipity (今日灵感 · 随心偶遇卡片)
+   - Wishlist Drawer (我的灵感手帐抽屉)
+   - Back to Top (环形进度回到顶部)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Serif+SC:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* ------------------------------------------------------------
+   1. 深色模式 (Zen Dark Mode // 玄青深夜纸感)
+   ------------------------------------------------------------ */
+:root {
+  --theme-transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                      color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme="dark"] {
+  --paper: #1e1b17;
+  --paper-soft: #171411;
+  --ink: #f0e8dc;
+  --muted: #a09586;
+  --line: rgba(255, 255, 255, 0.12);
+  --shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+  --gold: #d8a452;
+  --red: #c95444;
+  --green: #487e73;
+  --blue: #4a7d9e;
+  --rose: #cc6683;
+}
+
+html[data-theme="dark"] body {
+  background: #12100d;
+  color: var(--ink);
+}
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] .catalog-main {
+  background: var(--paper-soft);
+}
+
+html[data-theme="dark"] .quick-panel a,
+html[data-theme="dark"] .intro-grid article,
+html[data-theme="dark"] .movie-card,
+html[data-theme="dark"] .image-card,
+html[data-theme="dark"] .deploy-grid article,
+html[data-theme="dark"] .tools-card,
+html[data-theme="dark"] .feature-links a,
+html[data-theme="dark"] .drawer-content {
+  background: var(--paper);
+  border-color: var(--line);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .footer {
+  background: #0f0d0b;
+  border-top-color: var(--line);
+}
+
+html[data-theme="dark"] .topbar.is-stuck {
+  background: rgba(18, 15, 12, 0.88);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 44px rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="dark"] .drawer-backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+/* ------------------------------------------------------------
+   2. 顶部导航操作胶囊群 (Search, Wishlist, Theme Toggle)
+   ------------------------------------------------------------ */
+.nav-actions-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.portal-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  user-select: none;
+}
+
+.portal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.portal-nav-btn kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.portal-nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--red);
+  border-radius: 999px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.portal-nav-badge.is-bounce {
+  transform: scale(1.3);
+}
+
+/* ------------------------------------------------------------
+   3. 今日灵感 · 随心偶遇 (Daily Serendipity Widget)
+   ------------------------------------------------------------ */
+.serendipity-section {
+  width: min(1160px, calc(100% - 40px));
+  margin: 40px auto 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.serendipity-wrapper {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: var(--theme-transition);
+}
+
+.serendipity-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(168, 116, 37, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.serendipity-photo-box {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  aspect-ratio: 4 / 3;
+  background: var(--paper-soft);
+}
+
+.serendipity-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+
+.serendipity-tag-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(18, 15, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.serendipity-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.serendipity-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.serendipity-eyebrow {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.serendipity-title {
+  margin: 0 0 12px;
+  font-family: "Noto Serif SC", "Cinzel", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.serendipity-quote {
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  font-style: italic;
+  position: relative;
+  padding-left: 16px;
+  border-left: 3px solid var(--gold);
+}
+
+.serendipity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.serendipity-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.serendipity-btn.primary {
+  background: var(--red);
+  color: #fff;
+}
+.serendipity-btn.primary:hover {
+  background: #bf4a3b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(166, 64, 50, 0.3);
+}
+
+.serendipity-btn.secondary {
+  background: var(--paper-soft);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.serendipity-btn.secondary:hover {
+  border-color: var(--muted);
+  transform: translateY(-2px);
+}
+
+.serendipity-btn.random {
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--line);
+}
+.serendipity-btn.random:hover {
+  background: rgba(168, 116, 37, 0.1);
+  border-color: var(--gold);
+}
+
+.dice-icon {
+  display: inline-block;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.serendipity-btn.random:hover .dice-icon {
+  transform: rotate(180deg) scale(1.15);
+}
+
+@media (max-width: 860px) {
+  .serendipity-wrapper {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 20px;
+  }
+  .serendipity-photo-box {
+    max-height: 240px;
+  }
+}
+
+/* ------------------------------------------------------------
+   4. 全局即时联想搜索 (Command Palette Modal)
+   ------------------------------------------------------------ */
+.cmd-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(14, 12, 10, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 20px 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cmd-palette-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cmd-palette-modal {
+  width: 100%;
+  max-width: 660px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  transform: translateY(-16px) scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cmd-palette-backdrop.is-open .cmd-palette-modal {
+  transform: translateY(0) scale(1);
+}
+
+.cmd-search-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-soft);
+}
+
+.cmd-search-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.cmd-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--ink);
+  font-family: inherit;
+}
+.cmd-search-input::placeholder {
+  color: var(--muted);
+}
+
+.cmd-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  overflow-x: auto;
+}
+
+.cmd-tab-chip {
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper-soft);
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.cmd-tab-chip:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.cmd-tab-chip.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+.cmd-results-viewport {
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 8px 12px;
+}
+
+.cmd-result-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.cmd-result-item:hover,
+.cmd-result-item.is-selected {
+  background: var(--paper-soft);
+  transform: translateX(4px);
+}
+
+.cmd-result-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--line);
+}
+
+.cmd-result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cmd-result-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.cmd-result-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(168, 116, 37, 0.12);
+  color: var(--gold);
+}
+
+.cmd-result-title {
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmd-result-snippet {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmd-highlight {
+  color: var(--red);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cmd-empty-state {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.cmd-empty-state svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.cmd-footer-shortcuts {
+  padding: 10px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--paper-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cmd-footer-shortcuts kbd {
+  background: rgba(120, 120, 120, 0.15);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-size: 11px;
+  margin-right: 2px;
+}
+
+/* ------------------------------------------------------------
+   5. 我的灵感手帐 (Wishlist Drawer)
+   ------------------------------------------------------------ */
+.wishlist-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(14, 12, 10, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wishlist-drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wishlist-drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100vw);
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  box-shadow: -16px 0 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 9999;
+}
+
+.wishlist-drawer-backdrop.is-open .wishlist-drawer-panel {
+  transform: translateX(0);
+}
+
+.wishlist-drawer-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--paper-soft);
+}
+
+.wishlist-drawer-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wishlist-drawer-subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.wishlist-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+.wishlist-close-btn:hover {
+  color: var(--ink);
+  background: rgba(120, 120, 120, 0.12);
+}
+
+.wishlist-drawer-filter {
+  display: flex;
+  gap: 6px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  overflow-x: auto;
+}
+
+.wishlist-drawer-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wishlist-card {
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--paper-soft);
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.wishlist-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.wishlist-card img {
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.wishlist-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.wishlist-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.wishlist-card-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.wishlist-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wishlist-jump-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.wishlist-unmark-btn {
+  font-size: 12px;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.wishlist-unmark-btn:hover {
+  color: var(--red);
+}
+
+.wishlist-empty-box {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+.wishlist-empty-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* ------------------------------------------------------------
+   6. 回到顶部悬浮球 (Back to Top Radial Progress)
+   ------------------------------------------------------------ */
+.portal-back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 85;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portal-back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.portal-back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: var(--gold);
+}
+
+.portal-back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ------------------------------------------------------------
+   7. 简易轻提示 (Toast)
+   ------------------------------------------------------------ */
+.portal-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(22, 19, 16, 0.92);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portal-toast.is-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <title>莫扎特传</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#21171f"/>
+      <stop offset="0.58" stop-color="#5b3242"/>
+      <stop offset="1" stop-color="#c08a42"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <rect width="1000" height="650" fill="url(#glow)"/>
+  <circle cx="105" cy="100" r="210" fill="#fff" opacity=".08"/>
+  <g transform="translate(110 430)"><rect width="780" height="120" rx="14" fill="#f4ead7"/><g fill="#17171c"><rect x="70" y="0" width="38" height="78"/><rect x="155" y="0" width="38" height="78"/><rect x="242" y="0" width="38" height="78"/><rect x="408" y="0" width="38" height="78"/><rect x="493" y="0" width="38" height="78"/><rect x="580" y="0" width="38" height="78"/></g></g><g fill="none" stroke="#ffd88d" stroke-width="12" stroke-linecap="round"><path d="M230 330 C210 210 330 210 312 335"/><path d="M660 270 C650 145 785 166 748 300"/><path d="M500 330 L500 160 C560 190 610 180 650 140"/></g><g transform="translate(455 160)"><ellipse cx="0" cy="0" rx="110" ry="70" fill="#ead7bd"/><circle cx="-38" cy="-8" r="13" fill="#231b20"/><circle cx="38" cy="-8" r="13" fill="#231b20"/></g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <title>玫瑰</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c3b34"/>
+      <stop offset="0.58" stop-color="#63724d"/>
+      <stop offset="1" stop-color="#a9354a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <rect width="1000" height="650" fill="url(#glow)"/>
+  <circle cx="105" cy="100" r="210" fill="#fff" opacity=".08"/>
+  <path d="M500 650 C485 545 502 455 520 350" fill="none" stroke="#446b45" stroke-width="22"/><g transform="translate(520 285)"><circle cx="0" cy="0" r="120" fill="#ad3047"/><path d="M-100 -5 C-70 -100 40 -115 105 -40 C45 -50 -25 -45 -100 -5" fill="#d85669"/><path d="M-90 30 C-35 -5 25 -12 85 25 C45 80 -50 90 -90 30" fill="#f07a83"/><path d="M-15 -50 C50 -20 38 55 -22 55 C-70 35 -65 -30 -15 -50" fill="#8e263f"/></g>
+</svg>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="花影食途：电影、旅行、美食和百花的生活灵感网站。">
+  <!-- 分享卡片。og:image / og:url 规范上要绝对地址：
+       上线后运行 `node tools/finalize-seo.mjs https://你的域名` 会统一补全
+       （同时生成 sitemap.xml 与 robots.txt）。 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="花影食途">
+  <meta property="og:title" content="花影食途">
+  <meta property="og:description" content="花影食途：电影、旅行、美食和百花的生活灵感网站。">
+  <meta property="og:image" content="assets/share/hero-lavender-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="花影食途">
+  <meta name="twitter:description" content="花影食途：电影、旅行、美食和百花的生活灵感网站。">
+  <meta name="twitter:image" content="assets/share/hero-lavender-cover.jpg">
+  <title>花影食途</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav class="topbar" aria-label="主导航">
+      <a class="brand" href="index.html">花影食途</a>
+      <div class="nav-links">
+        <a href="movies.html">电影</a>
+        <a href="travel.html">旅行</a>
+        <a href="food.html">美食</a>
+        <a href="flowers.html">百花</a>
+        <a href="settings.html">设置</a>
+      </div>
+    </nav>
+
+    <section class="hero-copy" aria-labelledby="hero-title">
+      <p class="eyebrow">电影 · 旅行 · 美食 · 百花</p>
+      <h1 id="hero-title">把世界的故事，收进生活网站。</h1>
+      <p>
+        首页只放精选和入口，真正的内容放进四个独立栏目页。
+        每个栏目都能搜索、筛选、点开详情，像一本可以慢慢翻的生活杂志。
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="movies.html">开始浏览</a>
+        <a class="button light" href="settings.html">查看设置</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="quick-panel" aria-label="四个栏目入口">
+      <a href="movies.html">
+        <span>01</span>
+        <strong>电影馆</strong>
+        <em>推荐、个人评价、故事讲解、观后感</em>
+      </a>
+      <a href="travel.html">
+        <span>02</span>
+        <strong>旅行地图</strong>
+        <em>国家地区、风景图片、特色风俗</em>
+      </a>
+      <a href="food.html">
+        <span>03</span>
+        <strong>世界餐桌</strong>
+        <em>特色美食、做法、背后故事</em>
+      </a>
+      <a href="flowers.html">
+        <span>04</span>
+        <strong>百花图鉴</strong>
+        <em>高清花图、花期、寓意与故事</em>
+      </a>
+    </section>
+
+    <!-- 🎲 今日灵感 · 随心偶遇 -->
+    <section class="section serendipity-section" id="daily-serendipity" aria-label="今日灵感与随心偶遇">
+      <div class="serendipity-wrapper">
+        <div class="serendipity-photo-box">
+          <img src="assets/movie-spirited-away.jpg" alt="今日灵感" loading="lazy">
+          <span class="serendipity-tag-pill">🎬 电影</span>
+        </div>
+        <div class="serendipity-content">
+          <div class="serendipity-header-meta">
+            <span class="serendipity-eyebrow">今日灵感签 · 宜静思</span>
+          </div>
+          <h2 class="serendipity-title">《千与千寻》</h2>
+          <blockquote class="serendipity-quote">“长大不是不害怕，而是在害怕时仍愿意往前走。”</blockquote>
+          <div class="serendipity-actions">
+            <a class="serendipity-btn primary" href="movies.html#item=spirited-away">品读 电影详情 →</a>
+            <button type="button" class="serendipity-btn secondary wish-toggle"><span>🔖</span> 收入手帐</button>
+            <button type="button" class="serendipity-btn random" title="随机翻阅下一张"><span class="dice-icon">🎲</span> 换一份灵感</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro">
+      <div class="section-title">
+        <p class="eyebrow">新版结构</p>
+        <h2>现在不是一个长页面，而是一个可以逛的网站</h2>
+      </div>
+      <div class="intro-grid">
+        <article>
+          <h3>独立栏目页</h3>
+          <p>电影、旅行、美食、百花都有自己的页面，不再全部挤在首页底部。</p>
+        </article>
+        <article>
+          <h3>搜索和分类</h3>
+          <p>每个栏目都可以按关键词搜索，也可以按类型、地区、季节等筛选。</p>
+        </article>
+        <article>
+          <h3>内容详情</h3>
+          <p>点击任意内容卡片，可以看到更完整的故事、说明和记录建议。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section feature-strip">
+      <div class="section-title">
+        <p class="eyebrow">精选入口</p>
+        <h2>先从这四个方向开始逛</h2>
+      </div>
+      <div class="feature-links">
+        <a href="movies.html#item=spirited-away">
+          <span>电影</span>
+          <h3>《千与千寻》</h3>
+          <p>成长不是不害怕，而是在害怕时还往前走。</p>
+        </a>
+        <a href="travel.html#item=fuji">
+          <span>旅行</span>
+          <h3>富士山与河口湖</h3>
+          <p>春天的樱花和远处雪山，适合慢慢看。</p>
+        </a>
+        <a href="food.html#item=sushi">
+          <span>美食</span>
+          <h3>寿司</h3>
+          <p>简单食材里藏着米饭、季节和手艺。</p>
+        </a>
+        <a href="flowers.html#item=tulip">
+          <span>百花</span>
+          <h3>郁金香</h3>
+          <p>大片花田像春天铺开的彩色地毯。</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>花影食途 · 世界生活灵感小站</p>
+    <a href="settings.html">网站设置</a>
+  </footer>
+  <script src="catalog-data.js"></script>
+  <script src="enhance.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>

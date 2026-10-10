@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <title>千与千寻</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#182c32"/>
+      <stop offset="0.58" stop-color="#5d3d58"/>
+      <stop offset="1" stop-color="#d89043"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <rect width="1000" height="650" fill="url(#glow)"/>
+  <circle cx="105" cy="100" r="210" fill="#fff" opacity=".08"/>
+  <rect x="535" y="125" width="260" height="310" fill="#6b2e38"/><rect x="572" y="72" width="186" height="70" fill="#8f4339"/><polygon points="512,132 665,38 822,132" fill="#3b2032"/><g fill="#ffd272"><rect x="570" y="172" width="44" height="60" rx="12"/><rect x="652" y="172" width="44" height="60" rx="12"/><rect x="732" y="172" width="44" height="60" rx="12"/><rect x="595" y="276" width="54" height="72" rx="12"/><rect x="704" y="276" width="54" height="72" rx="12"/></g><path d="M55 478 C245 396 420 402 610 470 S850 555 1000 455" fill="none" stroke="#d54a3c" stroke-width="32"/><path d="M55 510 C245 428 420 434 610 502 S850 587 1000 487" fill="none" stroke="#f8c36b" stroke-width="9"/><path d="M0 515 C135 455 235 560 380 510 S625 455 765 520 910 580 1000 520 L1000 650 L0 650 Z" fill="#113f54" opacity=".58"/><path d="M0 560 C140 505 255 600 410 548 S660 498 810 560 930 615 1000 565" fill="none" stroke="#e8fbff" stroke-width="14" opacity=".45"/>
+</svg>

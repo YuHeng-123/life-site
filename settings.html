@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="花影食途网站设置：上线状态、公开范围、隐私提醒和成功标志。">
+  <!-- 分享卡片。og:image / og:url 规范上要绝对地址：
+       上线后运行 `node tools/finalize-seo.mjs https://你的域名` 会统一补全
+       （同时生成 sitemap.xml 与 robots.txt）。 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="花影食途">
+  <meta property="og:title" content="设置 · 花影食途">
+  <meta property="og:description" content="花影食途网站设置：上线状态、公开范围、隐私提醒和成功标志。">
+  <meta property="og:image" content="assets/share/hero-lavender-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="设置 · 花影食途">
+  <meta name="twitter:description" content="花影食途网站设置：上线状态、公开范围、隐私提醒和成功标志。">
+  <meta name="twitter:image" content="assets/share/hero-lavender-cover.jpg">
+  <title>设置 · 花影食途</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body class="settings-page">
+  <header class="simple-header">
+    <nav class="topbar" aria-label="主导航">
+      <a class="brand" href="index.html">花影食途</a>
+      <div class="nav-links">
+        <a href="movies.html">电影</a>
+        <a href="travel.html">旅行</a>
+        <a href="food.html">美食</a>
+        <a href="flowers.html">百花</a>
+        <a href="settings.html">设置</a>
+      </div>
+    </nav>
+
+    <section class="settings-hero">
+      <p class="eyebrow">设置</p>
+      <h1>上线状态、公开范围和维护说明</h1>
+      <p>这里集中放网站发布后的状态、隐私提醒和后续更新说明。首页专心展示内容，设置页负责说明网站怎样公开、怎样维护。</p>
+    </section>
+  </header>
+
+  <main>
+    <section class="section deploy settings-detail">
+      <div class="deploy-grid">
+        <article>
+          <h3>当前状态</h3>
+          <p>网站已经部署到 Vercel，可以通过公开网址访问。图片已经放在网站文件夹的 `assets` 里，云端打开时会一起加载。</p>
+        </article>
+        <article>
+          <h3>隐私提醒</h3>
+          <p>上线后内容就是公开的。正式放真实姓名、手机号、微信号、住址或私人照片前，要先确认自己愿意公开。</p>
+        </article>
+        <article>
+          <h3>成功标志</h3>
+          <p>访问线上网址时，手机和电脑都能打开“花影食途”，并能浏览电影、旅行、美食、百花栏目。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section settings-notes">
+      <div class="section-title">
+        <p class="eyebrow">维护说明</p>
+        <h2>以后更新内容时，按这三件事检查</h2>
+      </div>
+      <div class="deploy-grid">
+        <article>
+          <h3>图片</h3>
+          <p>新增图片先放进 `assets` 文件夹，再在页面里引用。这样部署后图片更稳定。</p>
+        </article>
+        <article>
+          <h3>文字</h3>
+          <p>电影写推荐、个人评价、故事讲解和观后感；旅行、美食、百花都保持“图片 + 介绍 + 故事”的格式。</p>
+        </article>
+        <article>
+          <h3>发布</h3>
+          <p>改完文件后重新部署到 Vercel。成功后线上网址不变，别人打开会看到新版。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section settings-notes">
+      <div class="section-title">
+        <p class="eyebrow">最近更新</p>
+        <h2>网站已经从长首页升级成多页面内容站</h2>
+      </div>
+      <div class="deploy-grid">
+        <article>
+          <h3>栏目页</h3>
+          <p>新增电影馆、旅行地图、世界餐桌、百花图鉴四个独立页面。</p>
+        </article>
+        <article>
+          <h3>搜索筛选</h3>
+          <p>每个栏目都可以搜索关键词，也能按类型、地区或季节筛选。</p>
+        </article>
+        <article>
+          <h3>详情展示</h3>
+          <p>每张内容卡片都可以点开详情，看到简介、故事、感受和记录建议。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>花影食途 · 设置</p>
+    <a href="index.html">回到首页</a>
+  </footer>
+  <script src="catalog-data.js"></script>
+  <script src="enhance.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>

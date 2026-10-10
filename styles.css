@@ -1,0 +1,1082 @@
+:root {
+  --paper: #fffdf8;
+  --paper-soft: #f6efe4;
+  --ink: #22211e;
+  --muted: #676158;
+  --line: #ddd0c1;
+  --red: #a64032;
+  --green: #315d54;
+  --blue: #2f5875;
+  --gold: #a87425;
+  --rose: #b44c69;
+  --shadow: 0 16px 40px rgba(45, 34, 24, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #f2eadf;
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  line-height: 1.75;
+}
+
+.hero {
+  min-height: 88vh;
+  color: #fff;
+  /* 页头图走 --hero-img 变量，默认薰衣草；四个栏目页在 motion.css 里各自覆盖 */
+  background-color: #1b1712;
+  background-image:
+    linear-gradient(90deg, rgba(28, 24, 20, 0.78), rgba(28, 24, 20, 0.36), rgba(28, 24, 20, 0.18)),
+    var(--hero-img, url("assets/hero-lavender.jpg"));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.topbar {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nav-links a {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.hero-copy {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 96px 0 130px;
+  max-width: 790px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.hero .eyebrow {
+  color: #ffd9a9;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 760px;
+  font-size: 58px;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+.hero-copy p {
+  max-width: 720px;
+  margin: 22px 0 0;
+  font-size: 18px;
+}
+
+.hero-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-weight: 800;
+  border: 1px solid transparent;
+}
+
+.button.primary {
+  color: #fff;
+  background: var(--red);
+}
+
+.button.light {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+main {
+  background: var(--paper-soft);
+}
+
+.simple-header {
+  color: #fff;
+  background-color: #1b1712;
+  background-image:
+    linear-gradient(90deg, rgba(28, 24, 20, 0.82), rgba(28, 24, 20, 0.48)),
+    var(--hero-img, url("assets/hero-lavender.jpg"));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.settings-hero {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 90px;
+  max-width: 780px;
+}
+
+.settings-hero h1 {
+  margin: 0;
+  font-size: 52px;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+.settings-hero p {
+  max-width: 680px;
+  margin: 20px 0 0;
+  font-size: 18px;
+}
+
+.quick-panel {
+  width: min(1160px, calc(100% - 40px));
+  margin: -74px auto 0;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.quick-panel a,
+.intro-grid article,
+.movie-card,
+.image-card,
+.deploy-grid article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.quick-panel a {
+  padding: 18px;
+  min-height: 132px;
+}
+
+.quick-panel span {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.quick-panel strong,
+.quick-panel em {
+  display: block;
+}
+
+.quick-panel strong {
+  margin-top: 14px;
+  font-size: 20px;
+}
+
+.quick-panel em {
+  margin-top: 8px;
+  color: var(--muted);
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.section {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 0;
+}
+
+.section-title {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.25;
+}
+
+.intro-grid,
+.deploy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.intro-grid article,
+.deploy-grid article {
+  padding: 24px;
+}
+
+.intro-grid h3,
+.deploy-grid h3 {
+  margin: 0 0 10px;
+}
+
+.intro-grid p,
+.deploy-grid p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.feature-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.feature-links a {
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(145deg, #315d54, #1f2523);
+  box-shadow: var(--shadow);
+}
+
+.feature-links a:nth-child(2) {
+  background: linear-gradient(145deg, #2f5875, #1f2523);
+}
+
+.feature-links a:nth-child(3) {
+  background: linear-gradient(145deg, #a87425, #3a2b1c);
+}
+
+.feature-links a:nth-child(4) {
+  background: linear-gradient(145deg, #b44c69, #3a2530);
+}
+
+.feature-links span {
+  color: #ffd9a9;
+  font-weight: 800;
+}
+
+.feature-links h3 {
+  margin: 42px 0 10px;
+  font-size: 26px;
+}
+
+.feature-links p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.movie-card {
+  padding: 24px;
+}
+
+.movie-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.movie-top span {
+  flex: 0 0 auto;
+  color: #fff;
+  background: var(--blue);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.movie-top strong {
+  font-size: 24px;
+  text-align: right;
+}
+
+.movie-card p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+.movie-card .note {
+  color: var(--ink);
+  background: #f3eadf;
+  border-left: 4px solid var(--gold);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.catalog-block {
+  margin-top: 26px;
+}
+
+.catalog-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.catalog-heading h3 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.catalog-heading p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.catalog-grid article {
+  min-height: 170px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.88);
+}
+
+.catalog-grid span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.catalog-grid h4 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.catalog-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.catalog-main {
+  padding-bottom: 72px;
+}
+
+.catalog-tools {
+  padding-top: 44px;
+}
+
+.tools-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.search-box span {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.search-box input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.filter-row button,
+.catalog-card button,
+.detail-close {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.filter-row button {
+  padding: 0 14px;
+}
+
+.filter-row button.is-active {
+  color: #fff;
+  border-color: var(--red);
+  background: var(--red);
+}
+
+.result-head h2 {
+  margin: 0 0 18px;
+  font-size: 34px;
+}
+
+.catalog-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.catalog-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.catalog-card img,
+.text-poster {
+  height: 190px;
+  object-fit: cover;
+}
+
+.text-poster {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #315d54, #a87425);
+}
+
+/* 这两张原图是竖构图，而卡片只显示 190px 高的横带。
+   默认居中取景会把主体切掉——圣托里尼只剩台阶和钟影、寿司只剩桌面。
+   这里只改「取景重心」，图片文件本身一字未动。
+   注意：src 现在指向派生小图，所以用「包含」匹配而不是「结尾」匹配。 */
+.catalog-card img[src*="travel-santorini-"] {
+  object-position: center 12%;
+}
+
+.catalog-card img[src*="food-sushi-"] {
+  object-position: center 85%;
+}
+
+/* 卡片图统一带一层模糊占位（由 JS 把 LQIP 写成 background-image）。
+   真图解码完成前先显示模糊版，解码完自动盖上去 —— 不需要任何 JS 收尾。 */
+.catalog-card img,
+.detail-media {
+  background-color: #e8ded0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.catalog-card picture {
+  display: block;
+}
+
+.catalog-card div {
+  padding: 18px;
+}
+
+.catalog-card h3 {
+  margin: 0 0 10px;
+  font-size: 23px;
+}
+
+.catalog-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.catalog-card .tag {
+  color: var(--red);
+  font-weight: 800;
+}
+
+.catalog-card .detail-btn {
+  width: 100%;
+}
+
+/* ---------- 详情：右侧抽屉 ----------
+   抽屉挂在 body 上、position: fixed，所以打开详情不会把列表顶走，
+   也不会像以前那样被 scrollIntoView 把整页拽跑。 */
+.detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(28, 20, 12, 0.44);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur-expand, 520ms) ease,
+              visibility 0s linear var(--dur-expand, 520ms);
+}
+
+.detail-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--dur-expand, 520ms) ease, visibility 0s linear 0s;
+}
+
+.detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 120;
+  width: min(480px, 94vw);
+  height: 100vh;
+  height: 100dvh;
+  background: #fff;
+  box-shadow: -26px 0 64px rgba(45, 34, 24, 0.28);
+  transform: translateX(101%);
+  visibility: hidden;
+  transition: transform var(--dur-expand, 520ms) var(--ease-soft, ease),
+              visibility 0s linear var(--dur-expand, 520ms);
+}
+
+.detail-panel.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform var(--dur-expand, 520ms) var(--ease-soft, ease),
+              visibility 0s linear 0s;
+}
+
+/* 滚动锁：抽屉打开时页面不跟着动，用 --sbw 补掉滚动条宽度避免跳一下 */
+body.drawer-open {
+  overflow: hidden;
+  padding-right: var(--sbw, 0px);
+}
+
+/* 提高特定性，避免被 motion.css 里后加载的 width: 100% 覆盖 */
+body.drawer-open .scroll-progress {
+  width: calc(100% - var(--sbw, 0px));
+}
+
+.detail-inner {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.detail-hero {
+  position: relative;
+  background: #e8ded0;
+}
+
+.detail-media {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.detail-body {
+  padding: 22px 26px 44px;
+}
+
+.detail-body h2 {
+  margin: 0 0 14px;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.detail-body p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.detail-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(28, 20, 12, 0.5);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* ---------- 记录标记 ---------- */
+.mark-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.mark-row button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.mark-row button.is-on {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+}
+
+/* 标记过的卡片在左上角点一个角标 */
+.catalog-card.is-marked {
+  position: relative;
+}
+
+.catalog-card.is-marked::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(255, 253, 248, 0.85);
+}
+
+.detail-body .mark-title {
+  margin: 22px 0 10px;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.result-head .mark-count {
+  color: var(--green);
+  font-size: 0.55em;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ---------- 搜索命中高亮 ---------- */
+mark {
+  padding: 0 2px;
+  border-radius: 3px;
+  color: inherit;
+  background: #ffe08a;
+}
+
+/* ---------- 工具栏：记录筛选 + 视图切换 ---------- */
+.tools-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.filter-row--marks {
+  margin-top: 0;
+  align-items: center;
+}
+
+.filter-label {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.view-switch {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.view-switch button {
+  min-height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.view-switch button.is-active {
+  color: #fff;
+  background: var(--ink);
+}
+
+/* ---------- 列表视图 ---------- */
+.catalog-list.is-list {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.catalog-list.is-list .catalog-card {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.catalog-list.is-list .catalog-card picture {
+  height: 100%;
+}
+
+.catalog-list.is-list .catalog-card img,
+.catalog-list.is-list .text-poster {
+  height: 100%;
+  min-height: 168px;
+}
+
+.catalog-list.is-list .catalog-card h3 {
+  font-size: 21px;
+}
+
+.catalog-list.is-list .catalog-card .detail-btn {
+  width: auto;
+  min-width: 132px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.image-card {
+  overflow: hidden;
+}
+
+.image-card img {
+  height: 270px;
+  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  background: #ddd;
+}
+
+.image-card div {
+  padding: 20px;
+}
+
+.image-card .tag {
+  margin: 0 0 8px;
+  color: var(--red);
+  font-weight: 800;
+}
+
+.image-card h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.image-card p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.image-card a {
+  display: inline-flex;
+  margin-top: 14px;
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.food .image-card .tag {
+  color: var(--gold);
+}
+
+.flowers .image-card .tag {
+  color: var(--rose);
+}
+
+.deploy {
+  padding-bottom: 72px;
+}
+
+.settings-detail {
+  padding-top: 72px;
+}
+
+.settings-notes {
+  padding-bottom: 72px;
+}
+
+.footer {
+  padding: 30px 20px 38px;
+  text-align: center;
+  background: #1f2523;
+  color: #f8f1e7;
+}
+
+.footer p {
+  margin: 0 0 12px;
+}
+
+.footer a {
+  color: #ffd9a9;
+  font-weight: 800;
+}
+
+@media (max-width: 980px) {
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .settings-hero h1 {
+    font-size: 42px;
+  }
+
+  .quick-panel,
+  .intro-grid,
+  .deploy-grid,
+  .catalog-grid,
+  .feature-links,
+  .catalog-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .topbar {
+    width: min(calc(100% - 28px), 1160px);
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .brand {
+    font-size: 26px;
+  }
+
+  .nav-links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-links a {
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .hero-copy {
+    width: min(calc(100% - 28px), 1160px);
+    padding: 54px 0 96px;
+  }
+
+  .settings-hero {
+    width: min(calc(100% - 28px), 1160px);
+    padding: 48px 0 70px;
+  }
+
+  .hero h1 {
+    max-width: 9em;
+    font-size: 34px;
+    line-height: 1.18;
+  }
+
+  .settings-hero h1 {
+    max-width: 9em;
+    font-size: 30px;
+    line-height: 1.18;
+  }
+
+  .hero-copy p {
+    font-size: 16px;
+    max-width: 22em;
+    overflow-wrap: anywhere;
+  }
+
+  .quick-panel,
+  .section {
+    width: min(calc(100% - 28px), 1160px);
+  }
+
+  .quick-panel {
+    margin-top: -52px;
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-top: 54px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+  }
+
+  .intro-grid,
+  .deploy-grid,
+  .movie-grid,
+  .catalog-grid,
+  .feature-links,
+  .catalog-list {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-heading {
+    display: block;
+  }
+
+  .catalog-heading h3 {
+    font-size: 22px;
+  }
+
+  .catalog-heading p {
+    margin-top: 8px;
+  }
+
+  .catalog-grid article {
+    min-height: auto;
+  }
+
+  .catalog-card img,
+  .text-poster {
+    height: 210px;
+  }
+
+  /* 窄屏列表视图：左侧缩略图收窄，给文字留出可读宽度 */
+  .catalog-list.is-list .catalog-card {
+    grid-template-columns: 148px minmax(0, 1fr);
+  }
+
+  .catalog-list.is-list .catalog-card img,
+  .catalog-list.is-list .text-poster {
+    min-height: 148px;
+  }
+
+  .catalog-list.is-list .catalog-card .detail-btn {
+    width: 100%;
+  }
+
+  .tools-foot {
+    display: block;
+  }
+
+  .view-switch {
+    margin-top: 12px;
+  }
+
+  .detail-panel {
+    padding: 22px;
+  }
+
+  .movie-top {
+    display: block;
+  }
+
+  .movie-top strong {
+    display: block;
+    margin-top: 12px;
+    text-align: left;
+  }
+
+  .image-card img {
+    height: 230px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .nav-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

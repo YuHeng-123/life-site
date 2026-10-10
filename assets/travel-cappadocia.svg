@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <title>卡帕多奇亚</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7b4c54"/>
+      <stop offset="0.58" stop-color="#d18859"/>
+      <stop offset="1" stop-color="#f3c982"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <rect width="1000" height="650" fill="url(#glow)"/>
+  <circle cx="105" cy="100" r="210" fill="#fff" opacity=".08"/>
+  <g fill="#7b5b47"><path d="M70 575 L125 360 L180 575 Z"/><path d="M210 575 L265 315 L325 575 Z"/><path d="M710 575 L768 335 L830 575 Z"/></g><ellipse cx="330" cy="185" rx="75" ry="95" fill="#f6d97d"/><path d="M270 185 H390" stroke="#ad5a53" stroke-width="16"/><path d="M330 90 V280" stroke="#ad5a53" stroke-width="10"/><rect x="310" y="290" width="40" height="25" fill="#74413c"/><ellipse cx="710" cy="145" rx="55" ry="70" fill="#7fc0ba"/><rect x="695" y="220" width="30" height="20" fill="#74413c"/>
+</svg>

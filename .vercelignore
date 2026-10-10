@@ -1,0 +1,8 @@
+# 别把这些发布到线上：
+.workbuddy
+_backup-*
+_*.html
+tools/
+*.md
+.gitignore
+.vercelignore

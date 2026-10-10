@@ -1,0 +1,24 @@
+# Vercel & IDE
+.vercel
+.workbuddy
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup folders
+_backup*
+*.bak
+*.tmp
+
+# Logs
+*.log
+logs

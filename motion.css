@@ -1,0 +1,452 @@
+/* ============================================================
+   花影食途 · 动效层 motion.css
+   ------------------------------------------------------------
+   设计原则：
+   1. 每个动效都要有实用理由（指示位置、反馈操作、引导视线），
+      不做纯装饰的位移。
+   2. 只动 transform / opacity / scale，不碰 width / top / height，
+      避免触发重排掉帧。
+   3. 全部在 prefers-reduced-motion: reduce 下退化为静态。
+   4. 必须放在 styles.css 之后加载（覆盖原背景与导航定义）。
+   ============================================================ */
+
+:root {
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-leave: cubic-bezier(0.4, 0, 1, 1);
+  --dur-tap: 150ms;
+  --dur-hover: 280ms;
+  --dur-expand: 520ms;
+  --dur-enter: 760ms;
+}
+
+/* ------------------------------------------------------------
+   1. 顶部滚动进度
+   实用点：长页面一眼知道读到哪了
+   ------------------------------------------------------------ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  width: 100%;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transform: scaleX(var(--scroll-p, 0));
+  transform-origin: 0 50%;
+}
+
+/* ------------------------------------------------------------
+   2. 导航
+   桌面端固定在顶部（原设计滚下去就没有导航了）；
+   窄屏保持原样，避免固定条吃掉太多屏幕高度。
+   ------------------------------------------------------------ */
+
+/* 窄屏时导航仍在文档流内，这里只需要保证它压在 Hero 背景之上。
+   注意：必须写在下面的媒体查询之前，否则会盖掉 fixed 定位 */
+.topbar {
+  position: relative;
+  z-index: 3;
+}
+
+@media (min-width: 721px) {
+  .topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 80;
+    width: auto;
+    margin: 0;
+    padding: 18px max(20px, calc((100vw - 1160px) / 2));
+    transition: transform var(--dur-expand) var(--ease-soft),
+                background-color 0.35s ease,
+                padding var(--dur-hover) ease,
+                box-shadow 0.35s ease;
+  }
+
+  /* 补偿固定导航脱离文档流后空出的高度，避免首屏塌陷 */
+  .hero,
+  .simple-header {
+    padding-top: 84px;
+  }
+
+  /* 滚过首屏后加深底色，让导航在任何内容上都读得清 */
+  .topbar.is-stuck {
+    padding-block: 12px;
+    background: rgba(24, 21, 18, 0.76);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 20px 44px rgba(18, 12, 6, 0.3);
+  }
+
+  .topbar.is-stuck .brand {
+    font-size: 22px;
+  }
+
+  .topbar.is-stuck .nav-links a {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .topbar.is-stuck .nav-links a:hover,
+  .topbar.is-stuck .nav-links a:focus-visible {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* 向下滚动时让路，向上滚动时回来 */
+  .topbar.is-stuck.is-hidden {
+    transform: translateY(-110%);
+  }
+}
+
+.nav-links a {
+  transition: background-color var(--dur-tap) ease,
+              border-color var(--dur-tap) ease,
+              transform var(--dur-tap) ease;
+}
+
+.nav-links a:active {
+  transform: scale(0.96);
+}
+
+/* ------------------------------------------------------------
+   3. Hero 背景分层
+   原来背景是一整张图，没法单独动画。
+   改成：::before 承载图片（可动），::after 承载遮罩。
+   ------------------------------------------------------------ */
+.hero,
+.simple-header {
+  position: relative;
+  isolation: isolate;
+  background: #1b1712;
+}
+
+/* ------------------------------------------------------------
+   3.0 各栏目页头图
+   默认是薰衣草（index.html / settings.html）；四个栏目页各用自己主题的页头图。
+   只覆盖一个 CSS 变量，页头图的绘制方式（滚动视差 + 缓慢推镜 + 叠加渐变）完全不变。
+   ------------------------------------------------------------ */
+body[data-catalog="movies"]  { --hero-img: url("assets/hero-movies.jpg"); }
+body[data-catalog="travel"]  { --hero-img: url("assets/hero-travel.jpg"); }
+body[data-catalog="food"]    { --hero-img: url("assets/hero-food.jpg"); }
+body[data-catalog="flowers"] { --hero-img: url("assets/hero-flowers.jpg"); }
+
+
+.hero::before,
+.simple-header::before {
+  content: "";
+  position: absolute;
+  /* 上边留出余量，视差下移时不会露出底部或顶部空白 */
+  inset: -20% 0 0 0;
+  z-index: 0;
+  background-color: #1b1712;
+  background-image: var(--hero-img, url("assets/hero-lavender.jpg"));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translate3d(0, var(--hero-y, 0px), 0);
+  animation: hero-drift 30s ease-in-out infinite alternate;
+  will-change: transform, scale;
+}
+
+/* 下面这段必须放在上面的基础 ::before 规则「之后」：
+   两者特定性相同，靠源顺序决定胜负。放前面会被 jpg 规则盖掉。 */
+/* ------------------------------------------------------------
+   3.0b 页头图的现代格式
+   上面那条规则用的是 jpg（薰衣草那张有 1MB）。这里在支持的浏览器里换成
+   AVIF / WebP：体积约为 jpg 的 1/4 ~ 1/5。页头是首屏最大的一屏，
+   这一项直接影响 LCP。不支持的浏览器会忽略整段，继续用 jpg。
+   ------------------------------------------------------------ */
+@supports (background-image: image-set(url("x.webp") type("image/webp") 1x)) {
+.hero::before,
+  .simple-header::before {
+    background-image: image-set(
+    url("assets/derived/hero-lavender-1280.avif") type("image/avif") 1x,
+    url("assets/derived/hero-lavender-1280.webp") type("image/webp") 1x,
+    url("assets/derived/hero-lavender-1920.avif") type("image/avif") 2x,
+    url("assets/derived/hero-lavender-1920.webp") type("image/webp") 2x
+    );
+  }
+
+  body[data-catalog="movies"] .hero::before,
+  body[data-catalog="movies"] .simple-header::before {
+    background-image: image-set(
+      url("assets/derived/hero-movies-1280.avif") type("image/avif") 1x,
+      url("assets/derived/hero-movies-1280.webp") type("image/webp") 1x,
+      url("assets/derived/hero-movies-1920.avif") type("image/avif") 2x,
+      url("assets/derived/hero-movies-1920.webp") type("image/webp") 2x
+    );
+  }
+
+  body[data-catalog="travel"] .hero::before,
+  body[data-catalog="travel"] .simple-header::before {
+    background-image: image-set(
+      url("assets/derived/hero-travel-1280.avif") type("image/avif") 1x,
+      url("assets/derived/hero-travel-1280.webp") type("image/webp") 1x,
+      url("assets/derived/hero-travel-1920.avif") type("image/avif") 2x,
+      url("assets/derived/hero-travel-1920.webp") type("image/webp") 2x
+    );
+  }
+
+  body[data-catalog="food"] .hero::before,
+  body[data-catalog="food"] .simple-header::before {
+    background-image: image-set(
+      url("assets/derived/hero-food-1280.avif") type("image/avif") 1x,
+      url("assets/derived/hero-food-1280.webp") type("image/webp") 1x,
+      url("assets/derived/hero-food-1920.avif") type("image/avif") 2x,
+      url("assets/derived/hero-food-1920.webp") type("image/webp") 2x
+    );
+  }
+
+  body[data-catalog="flowers"] .hero::before,
+  body[data-catalog="flowers"] .simple-header::before {
+    background-image: image-set(
+      url("assets/derived/hero-flowers-1280.avif") type("image/avif") 1x,
+      url("assets/derived/hero-flowers-1280.webp") type("image/webp") 1x,
+      url("assets/derived/hero-flowers-1920.avif") type("image/avif") 2x,
+      url("assets/derived/hero-flowers-1920.webp") type("image/webp") 2x
+    );
+  }
+}
+
+/* 极缓慢推镜：30s 一个来回，慢到几乎察觉不到，但有呼吸感 */
+@keyframes hero-drift {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.07;
+  }
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(28, 24, 20, 0.78),
+    rgba(28, 24, 20, 0.36),
+    rgba(28, 24, 20, 0.18)
+  );
+}
+
+.simple-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(28, 24, 20, 0.82),
+    rgba(28, 24, 20, 0.48)
+  );
+}
+
+/* 内容层压在背景与遮罩之上（导航的 z-index 在上面的导航一节里单独给） */
+.hero > .hero-copy,
+.simple-header > .settings-hero {
+  position: relative;
+  z-index: 3;
+}
+
+/* ------------------------------------------------------------
+   4. 跟随鼠标的暖色光斑（只在桌面指针设备生效）
+   实用点：把视线引向鼠标所在位置，暗示这一块可以互动
+   ------------------------------------------------------------ */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  background: radial-gradient(
+    460px circle at var(--mx, 72%) var(--my, 26%),
+    rgba(255, 216, 156, 0.26),
+    rgba(255, 216, 156, 0.07) 46%,
+    transparent 68%
+  );
+}
+
+.hero.is-live .hero-glow {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   5. 卡片：悬停倾斜 + 跟随高光
+   实用点：在鼠标点下去之前就暗示"这里可以点"
+   ------------------------------------------------------------ */
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform var(--dur-hover) var(--ease-soft),
+              box-shadow var(--dur-hover) ease;
+}
+
+.tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    300px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 226, 178, 0.34),
+    transparent 64%
+  );
+}
+
+.tilt-card.is-hover::after {
+  opacity: 1;
+}
+
+/* 高光压在卡片内容之下，保证文字始终清晰可读 */
+.tilt-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 按下时给一个明确的触感反馈 */
+.button,
+.catalog-card button,
+.filter-row button,
+.detail-close {
+  transition: background-color var(--dur-hover) ease,
+              border-color var(--dur-hover) ease,
+              color var(--dur-hover) ease,
+              transform var(--dur-tap) ease;
+}
+
+.quick-panel a:active,
+.feature-links a:active,
+.catalog-card button:active,
+.filter-row button:active,
+.detail-close:active,
+.button:active {
+  transform: scale(0.975);
+}
+
+.catalog-card img,
+.image-card img {
+  transition: scale var(--dur-expand) var(--ease-soft);
+}
+
+.tilt-card:hover img,
+.catalog-card:hover img,
+.image-card:hover img {
+  scale: 1.045;
+}
+
+/* ------------------------------------------------------------
+   6. 栏目页：详情抽屉
+   位置与滑动由 styles.css 负责（transform: translateX），
+   这里只补「内容比抽屉高时先淡入上浮」的细节。
+   注意 fill 用 backwards：不能用 both，否则会永久压住子元素的 transform。
+   ------------------------------------------------------------ */
+.detail-panel.is-open .detail-inner {
+  animation: drawer-in 0.5s var(--ease-soft) backwards;
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* 抽屉打开时补掉滚动条宽度，避免固定导航横向错位 */
+body.drawer-open .topbar {
+  padding-right: calc(max(20px, (100vw - 1160px) / 2) + var(--sbw, 0px));
+}
+
+/* 当前选中的卡片留个标记，方便和抽屉里的内容对照 */
+.catalog-card.is-current {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px rgba(166, 64, 50, 0.18), var(--shadow);
+}
+
+/* 列表视图下图片不参与 hover 放大，否则行高会被撑得抖动 */
+.catalog-list.is-list .catalog-card:hover img {
+  scale: 1;
+}
+
+/* ------------------------------------------------------------
+   7. 跨页面过渡（同源多页，一行开启）
+   实用点：点栏目时页面是"换过去"的，而不是闪一下
+   ------------------------------------------------------------ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-fade-out 0.22s ease both;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in 0.42s var(--ease-soft) both;
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ------------------------------------------------------------
+   8. 键盘可达性：给焦点一个看得见的落点
+   ------------------------------------------------------------ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   9. 降级：系统开启"减少动态效果"时全部退化为静态
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+
+  .hero::before,
+  .simple-header::before {
+    animation: none;
+  }
+
+  .hero-glow {
+    display: none;
+  }
+
+  .tilt-card:hover img,
+  .catalog-card:hover img,
+  .image-card:hover img {
+    scale: 1;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

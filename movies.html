@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="花影食途电影馆：电影推荐、个人评价、故事讲解和观后感。">
+  <!-- 分享卡片。og:image / og:url 规范上要绝对地址：
+       上线后运行 `node tools/finalize-seo.mjs https://你的域名` 会统一补全
+       （同时生成 sitemap.xml 与 robots.txt）。 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="花影食途">
+  <meta property="og:title" content="电影馆 · 花影食途">
+  <meta property="og:description" content="花影食途电影馆：电影推荐、个人评价、故事讲解和观后感。">
+  <meta property="og:image" content="assets/share/hero-movies-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="电影馆 · 花影食途">
+  <meta name="twitter:description" content="花影食途电影馆：电影推荐、个人评价、故事讲解和观后感。">
+  <meta name="twitter:image" content="assets/share/hero-movies-cover.jpg">
+  <title>电影馆 · 花影食途</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body data-catalog="movies">
+  <header class="simple-header">
+    <nav class="topbar" aria-label="主导航">
+      <a class="brand" href="index.html">花影食途</a>
+      <div class="nav-links">
+        <a href="movies.html">电影</a>
+        <a href="travel.html">旅行</a>
+        <a href="food.html">美食</a>
+        <a href="flowers.html">百花</a>
+        <a href="settings.html">设置</a>
+      </div>
+    </nav>
+    <section class="settings-hero catalog-hero">
+      <p class="eyebrow">电影馆</p>
+      <h1>电影推荐、故事讲解和观后感</h1>
+      <p>按类型筛选，点开卡片看更完整的评价、故事和看完后的感受。</p>
+    </section>
+  </header>
+  <main class="catalog-main">
+    <section class="section catalog-tools" aria-label="电影搜索和筛选"></section>
+    <section class="section catalog-results" aria-live="polite"></section>
+  </main>
+  <footer class="footer"><p>花影食途 · 电影馆</p><a href="index.html">回到首页</a></footer>
+  <script src="catalog-data.js"></script>
+  <script src="assets/derived/lqip.js"></script>
+  <script src="catalog-page.js"></script>
+  <script src="enhance.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>

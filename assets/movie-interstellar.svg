@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <title>星际穿越</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b18"/>
+      <stop offset="0.58" stop-color="#172a46"/>
+      <stop offset="1" stop-color="#d6a24f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <rect width="1000" height="650" fill="url(#glow)"/>
+  <circle cx="105" cy="100" r="210" fill="#fff" opacity=".08"/>
+  <g fill="#fff7d6" opacity=".85"><circle cx="145" cy="95" r="3"/><circle cx="280" cy="135" r="2"/><circle cx="500" cy="70" r="2"/><circle cx="770" cy="205" r="2"/><circle cx="860" cy="95" r="3"/><circle cx="920" cy="260" r="2"/></g><circle cx="690" cy="245" r="118" fill="#0b1024"/><circle cx="690" cy="245" r="146" fill="none" stroke="#f7d58a" stroke-width="22" opacity=".72"/><circle cx="690" cy="245" r="182" fill="none" stroke="#8bd7ff" stroke-width="8" opacity=".35"/><path d="M0 500 C220 440 420 570 640 490 S850 450 1000 525 L1000 650 L0 650 Z" fill="#8b742f"/><g stroke="#d6b650" stroke-width="10" opacity=".72"><line x1="80" y1="650" x2="135" y2="455"/><line x1="180" y1="650" x2="225" y2="470"/><line x1="290" y1="650" x2="340" y2="465"/></g>
+</svg>

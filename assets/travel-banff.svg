@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">
+  <title>班夫国家公园</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16354c"/>
+      <stop offset="0.58" stop-color="#3f87a4"/>
+      <stop offset="1" stop-color="#a9c7b0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#fff4cf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff4cf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <rect width="1000" height="650" fill="url(#glow)"/>
+  <circle cx="105" cy="100" r="210" fill="#fff" opacity=".08"/>
+  <circle cx="805" cy="125" r="72" fill="#fff1b8" opacity=".85"/><path d="M0 420 L175 160 L310 415 Z" fill="#33495b"/><path d="M210 420 L430 105 L650 420 Z" fill="#425c6f"/><path d="M520 420 L710 175 L1000 420 Z" fill="#344b5e"/><g fill="#fff"><path d="M175 160 L122 240 L216 226 Z"/><path d="M430 105 L352 220 L486 205 Z"/></g><path d="M0 455 C190 425 350 482 520 445 S840 400 1000 455 L1000 650 L0 650 Z" fill="#49b7bd"/>
+</svg>
